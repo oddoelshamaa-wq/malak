@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard | Easy Booking Egypt</title>
+    <style>
+        body { font-family: 'Cairo', sans-serif; padding: 40px; background: #f0f2f5; }
+        .box { background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { padding: 15px; border: 1px solid #ddd; text-align: center; }
+        th { background: #c5a059; color: white; }
+        .status { color: green; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h1>إدارة حجوزات Easy Booking Egypt 🏢</h1>
+        <table id="adminTable">
+            <thead>
+                <tr>
+                    <th>رقم الطلب</th>
+                    <th>الفندق</th>
+                    <th>اسم العميل</th>
+                    <th>رقم الموبايل</th>
+                    <th>المبلغ</th>
+                    <th>طريقة الدفع</th>
+                    <th>الحالة</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody"></tbody>
+        </table>
+    </div>
+
+    <script>
+        function load() {
+            const db = JSON.parse(localStorage.getItem('ebOrders')) || [];
+            document.getElementById('tableBody').innerHTML = db.map(o => `
+                <tr>
+                    <td>${o.id}</td>
+                    <td>${o.hotel}</td>
+                    <td>${o.customer}</td>
+                    <td>${o.phone}</td>
+                    <td>${o.total} ج.م</td>
+                    <td style="color:blue; font-weight:bold">${o.method}</td>
+                    <td class="status">${o.status}</td>
+                </tr>
+            `).reverse().join('');
+        }
+        setInterval(load, 2000);
+        window.onload = load;
+    </script>
+</body>
+</html>
