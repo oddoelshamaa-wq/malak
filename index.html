@@ -3,46 +3,118 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Egypt Stay 3D | فنادق مصر</title>
-    <!-- خط Cairo من جوجل -->
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <title>Easy Booking Egypt | شركة إيزي بوكينج لحجز الفنادق</title>
+    <!-- خط كايرو -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+    <!-- خدمة العملاء واتساب -->
+    <a href="https://wa.me/201000000000" class="whatsapp-btn" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+        <span>تحدث مع خدمة العملاء</span>
+    </a>
+
     <!-- الهيدر -->
     <nav>
-        <div class="logo">مصر<span>Stay</span></div>
-        <div class="tag">بوابتك لإقامة ملكية 🇪🇬</div>
+        <div class="logo">Easy Booking <span>Egypt</span></div>
+        <div class="tag-line">إيزي بوكينج - شركة حجز الفنادق الأولى في مصر 🇪🇬</div>
     </nav>
 
-    <!-- الجزء الرئيسي (Hero) -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>اكتشف جمال مصر</h1>
-            <p>حجز أفخم الفنادق في القاهرة، شرم الشيخ، والجونة بتجربة فريدة</p>
-            
-            <div class="search-container">
-                <select id="citySelect">
-                    <option value="all">كل المدن المصرية</option>
-                    <option value="cairo">القاهرة</option>
-                    <option value="sharm">شرم الشيخ</option>
-                    <option value="gouna">الجونة / الغردقة</option>
-                    <option value="luxor">الأقصر وأسوان</option>
-                </select>
-                <button onclick="filterHotels()">ابحث الآن</button>
+    <!-- قسم الواجهة -->
+    <header class="hero">
+        <div class="hero-overlay">
+            <div class="hero-content">
+                <h1>شركة إيزي بوكينج لحجز الفنادق</h1>
+                <p>بوابتك لإقامة فاخرة في جميع محافظات جمهورية مصر العربية</p>
+                
+                <!-- بار البحث -->
+                <div class="search-box">
+                    <select id="cityFilter">
+                        <option value="all">كل محافظات مصر</option>
+                        <option value="القاهرة">القاهرة</option>
+                        <option value="الجيزة">الجيزة</option>
+                        <option value="الإسكندرية">الإسكندرية</option>
+                        <option value="شرم الشيخ">شرم الشيخ</option>
+                        <option value="الغردقة">الغردقة</option>
+                        <option value="مرسى مطروح">مرسى مطروح</option>
+                        <option value="الساحل الشمالي">الساحل الشمالي</option>
+                        <option value="الأقصر">الأقصر</option>
+                        <option value="أسوان">أسوان</option>
+                        <option value="دهب">دهب</option>
+                        <option value="العين السخنة">العين السخنة</option>
+                        <option value="سيوة">سيوة</option>
+                        <option value="بورسعيد">بورسعيد</option>
+                        <option value="الفيوم">الفيوم</option>
+                    </select>
+                    <button class="search-btn" onclick="filterHotels()">ابحث عن فنادق</button>
+                </div>
             </div>
+        </div>
+    </header>
+
+    <!-- عرض الفنادق -->
+    <section class="container">
+        <h2 class="section-title" id="resultsTitle">أفضل العروض المختارة من شركة إيزي بوكينج</h2>
+        <div class="hotels-grid" id="hotelsGrid">
+            <!-- سيتم التحميل من الجافاسكريبت -->
         </div>
     </section>
 
-    <!-- منطقة النتائج -->
-    <h2 class="section-title">أفضل العروض الحالية</h2>
-    <div class="hotels-grid" id="hotelsGrid">
-        <!-- الفنادق تظهر هنا من خلال الجافا سكريبت -->
+    <!-- نافذة تفاصيل الفندق -->
+    <div id="detailsModal" class="modal">
+        <div class="modal-content details-card">
+            <span class="close" onclick="closeModal('detailsModal')">&times;</span>
+            <img id="detImg" src="">
+            <div class="details-body">
+                <h2 id="detName"></h2>
+                <div id="detRating" class="stars"></div>
+                <p id="detDesc"></p>
+                <div class="features">
+                    <span>📶 واي فاي مجاني</span> <span>🏊 مسبح</span> <span>🍽️ مطعم فاخر</span> <span>❄️ تكييف</span>
+                </div>
+                <button class="action-btn" id="startBooking">احجز عبر إيزي بوكينج الآن</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- نافذة الحجز والدفع -->
+    <div id="bookingModal" class="modal">
+        <div class="modal-content">
+            <h2 id="bookingHotelName">حجز فندق</h2>
+            <div id="step1">
+                <div class="form-group">
+                    <label>الاسم بالكامل:</label>
+                    <input type="text" id="custName" placeholder="أدخل اسمك كما في البطاقة">
+                </div>
+                <div class="form-group">
+                    <label>رقم الموبايل:</label>
+                    <input type="tel" id="custPhone" placeholder="01xxxxxxxxx">
+                </div>
+                <div class="row">
+                    <div class="col"><label>وصول:</label><input type="date" id="checkIn" onchange="calcTotal()"></div>
+                    <div class="col"><label>مغادرة:</label><input type="date" id="checkOut" onchange="calcTotal()"></div>
+                </div>
+                <div class="price-box" id="priceDisplay">يرجى اختيار التواريخ...</div>
+                <button class="action-btn" onclick="nextStep()">المتابعة للدفع الآمن</button>
+            </div>
+
+            <div id="step2" style="display:none">
+                <h3>طريقة الدفع (Easy Payment)</h3>
+                <div class="payment-list">
+                    <label class="pay-item"><input type="radio" name="pay" value="فيزا / ماستر كارد" checked> 💳 فيزا / ماستر كارد</label>
+                    <label class="pay-item"><input type="radio" name="pay" value="فودافون كاش"> 📱 فودافون كاش</label>
+                    <label class="pay-item"><input type="radio" name="pay" value="انستا باي"> ⚡ انستا باي (InstaPay)</label>
+                </div>
+                <button class="action-btn confirm" onclick="finalizeBooking()">تأكيد الدفع النهائي</button>
+                <button class="back-btn" onclick="prevStep()">الرجوع لتعديل البيانات</button>
+            </div>
+        </div>
     </div>
 
     <footer>
-        <p>جميع الحقوق محفوظة لشركة سياحة مصر 2024 ©</p>
+        <p>&copy; 2024 Easy Booking Egypt - شركة إيزي بوكينج لخدمات حجز الفنادق. جميع الحقوق محفوظة.</p>
     </footer>
 
     <script src="script.js"></script>
