@@ -1,137 +1,86 @@
 :root {
-    --gold: #d4af37;
-    --dark: #0a0a0a;
-    --card-bg: #1a1a1a;
+    --gold: #c5a059;
+    --dark: #121212;
+    --white: #ffffff;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Cairo', sans-serif;
-}
+* { box-sizing: border-box; font-family: 'Cairo', sans-serif; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 
-body {
-    background-color: var(--dark);
-    color: white;
-    overflow-x: hidden;
-}
+body { background: #f4f7f6; color: #333; line-height: 1.6; }
 
 /* الهيدر */
-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 5%;
-    background: rgba(0,0,0,0.9);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-}
-
-.logo { font-size: 28px; font-weight: bold; }
+nav { background: var(--dark); padding: 15px; text-align: center; border-bottom: 3px solid var(--gold); position: sticky; top:0; z-index: 1000; }
+.logo { color: white; font-size: 22px; font-weight: 900; }
 .logo span { color: var(--gold); }
 
-/* الـ Hero */
-.hero {
-    height: 80vh;
-    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
-                url('https://images.unsplash.com/photo-1539768942893-daf53e448371?auto=format&fit=crop&w=1350&q=80');
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+/* قسم الواجهة */
+.hero { height: 50vh; background: url('https://images.unsplash.com/photo-1541971875076-8f970d573be6?w=800') center/cover; position: relative; }
+.hero-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.6); display: flex; align-items: center; justify-content: center; padding: 20px; }
+.hero-content { color: white; text-align: center; width: 100%; }
+.hero-content h1 { font-size: 1.8rem; margin-bottom: 10px; }
+
+/* بار البحث - ذكي للموبايل */
+.search-box { 
+    background: white; 
+    padding: 10px; 
+    border-radius: 15px; 
+    display: flex; 
+    flex-direction: column; /* يترتب تحت بعض في الموبايل */
+    gap: 10px; 
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
 }
 
-.search-container {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 20px;
-    border-radius: 50px;
-    backdrop-filter: blur(10px);
-    margin-top: 30px;
-    display: flex;
-    gap: 10px;
+#cityFilter { padding: 12px; border: 1px solid #ddd; border-radius: 10px; font-size: 16px; outline: none; }
+.search-btn { background: var(--gold); border: none; padding: 12px; border-radius: 10px; font-weight: bold; cursor: pointer; font-size: 16px; }
+
+/* شبكة الفنادق */
+.container { padding: 20px 15px; }
+.section-title { text-align: center; margin-bottom: 25px; font-size: 1.5rem; }
+
+.hotels-grid { display: grid; grid-template-columns: 1fr; gap: 20px; } /* عمود واحد للموبايل */
+
+.card { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+.card img { width: 100%; height: 200px; object-fit: cover; }
+.card-body { padding: 15px; text-align: center; }
+.price-tag { color: var(--gold); font-weight: bold; font-size: 1.2rem; margin: 10px 0; }
+
+/* النوافذ (Modals) متجاوبة 100% */
+.modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 2000; padding: 15px; align-items: center; justify-content: center; }
+.modal-content { background: white; width: 100%; max-width: 500px; border-radius: 20px; position: relative; max-height: 90vh; overflow: hidden; display: flex; flex-direction: column; }
+.modal-scroll-area { padding: 20px; overflow-y: auto; }
+.close { position: absolute; top: 10px; left: 15px; font-size: 28px; z-index: 10; color: #333; }
+
+.modal-img { width: 100%; border-radius: 10px; margin-bottom: 15px; }
+
+/* الفورم */
+.form-group { margin-bottom: 15px; text-align: right; }
+.form-group label { display: block; font-weight: bold; margin-bottom: 5px; font-size: 14px; }
+.form-group input { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 16px; }
+.form-row { display: flex; gap: 10px; }
+.col { flex: 1; }
+
+.price-box { background: #fff9ed; padding: 12px; border-radius: 10px; text-align: center; margin: 15px 0; font-weight: bold; border: 1px dashed var(--gold); }
+
+.action-btn { width: 100%; padding: 15px; background: var(--gold); border: none; font-weight: bold; border-radius: 10px; font-size: 16px; cursor: pointer; }
+.back-link { display: block; text-align: center; margin-top: 15px; color: #666; background: none; border: none; width: 100%; cursor: pointer; text-decoration: underline; }
+
+/* خيارات الدفع */
+.pay-item { display: flex; align-items: center; gap: 10px; padding: 12px; border: 1px solid #eee; border-radius: 10px; margin-bottom: 10px; }
+
+/* واتساب */
+.whatsapp-btn { position: fixed; bottom: 20px; left: 20px; background: #25d366; color: white; padding: 10px 15px; border-radius: 50px; text-decoration: none; display: flex; align-items: center; gap: 8px; z-index: 3000; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+.whatsapp-btn img { width: 24px; }
+.btn-text { font-size: 14px; font-weight: bold; }
+
+/* شاشات التابلت والكمبيوتر (أكبر من 768px) */
+@media (min-width: 768px) {
+    .search-box { flex-direction: row; border-radius: 50px; padding: 10px 20px; }
+    .hotels-grid { grid-template-columns: repeat(2, 1fr); }
+    .hero { height: 60vh; }
+    .hero-content h1 { font-size: 2.8rem; }
+    .logo { font-size: 28px; }
 }
 
-select, button {
-    padding: 15px 25px;
-    border-radius: 30px;
-    border: none;
-    font-size: 16px;
-    outline: none;
-}
-
-button {
-    background: var(--gold);
-    color: black;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-button:hover { transform: scale(1.05); }
-
-/* شبكة الفنادق والـ 3D */
-.section-title { text-align: center; margin: 50px 0; font-size: 32px; color: var(--gold); }
-
-.hotels-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 40px;
-    padding: 0 5% 100px;
-    perspective: 1000px; /* للـ 3D */
-}
-
-.hotel-card {
-    background: var(--card-bg);
-    border-radius: 20px;
-    overflow: hidden;
-    transform-style: preserve-3d;
-    transition: transform 0.1s ease;
-    border: 1px solid #333;
-    cursor: pointer;
-    position: relative;
-}
-
-.hotel-card img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-}
-
-.hotel-info {
-    padding: 20px;
-    transform: translateZ(30px); /* رفع النص ليعطي عمق */
-}
-
-.hotel-info h3 { color: var(--gold); margin-bottom: 10px; }
-
-.price {
-    display: block;
-    font-size: 20px;
-    font-weight: bold;
-    margin: 15px 0;
-}
-
-.whatsapp-btn {
-    display: block;
-    width: 100%;
-    background: #25d366;
-    color: white;
-    text-align: center;
-    padding: 12px;
-    border-radius: 10px;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-/* الموبايل */
-@media (max-width: 600px) {
-    .search-container {
-        flex-direction: column;
-        border-radius: 20px;
-    }
-    .hero h1 { font-size: 28px; }
+@media (min-width: 1024px) {
+    .hotels-grid { grid-template-columns: repeat(3, 1fr); }
 }
