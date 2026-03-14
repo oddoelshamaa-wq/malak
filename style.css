@@ -72,6 +72,81 @@ nav { background: var(--dark); padding: 15px; text-align: center; border-bottom:
 .whatsapp-btn img { width: 24px; }
 .btn-text { font-size: 14px; font-weight: bold; }
 
+/* شاشة التحميل (Loader) */
+#loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    opacity: 1;
+    transition: opacity 0.5s ease-out;
+}
+
+.loader-container {
+    text-align: center;
+    color: white;
+    padding: 40px 20px;
+}
+
+.loader-logo {
+    font-size: 2.2rem;
+    font-weight: 900;
+    margin-bottom: 30px;
+    background: linear-gradient(45deg, white, var(--gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.loader-logo span {
+    color: var(--gold);
+    font-weight: 900;
+}
+
+.progress-bar {
+    width: 300px;
+    max-width: 90vw;
+    height: 8px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 10px;
+    margin: 0 auto 25px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--gold), #d4af37);
+    border-radius: 10px;
+    width: 0%;
+    animation: progress 2s ease-in-out infinite;
+    box-shadow: 0 0 20px rgba(197, 160, 89, 0.6);
+}
+
+@keyframes progress {
+    0% { width: 0%; }
+    50% { width: 70%; }
+    100% { width: 100%; }
+}
+
+#loader p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    font-weight: 500;
+}
+
+/* إخفاء الـ loader */
+#loader.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
 /* شاشات التابلت والكمبيوتر (أكبر من 768px) */
 @media (min-width: 768px) {
     .search-box { flex-direction: row; border-radius: 50px; padding: 10px 20px; }
