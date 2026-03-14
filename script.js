@@ -1,3 +1,4 @@
+
 const hotelDB = [
     { name: "فندق فورسيزونز نايل بلازا", city: "القاهرة", price: 7200, img: "https://images.unsplash.com/photo-1541971875076-8f970d573be6", desc: "إقامة ملكية في قلب القاهرة تطل على النيل مباشرة.", rating: "⭐⭐⭐⭐⭐" },
     { name: "فندق ماريوت مينا هاوس", city: "الجيزة", price: 5500, img: "https://images.unsplash.com/photo-1503177119275-0aa32b3a9368", desc: "استيقظ على منظر الأهرامات العظيمة مباشرة من غرفتك.", rating: "⭐⭐⭐⭐⭐" },
@@ -110,4 +111,15 @@ function finalizeBooking() {
     location.reload();
 }
 
-window.onload = () => renderHotels(hotelDB);
+window.onload = () => {
+    // تشغيل دالة عرض الفنادق الأصلية
+    renderHotels(hotelDB);
+
+    // كود إخفاء شاشة التحميل
+    const loader = document.getElementById('loader');
+    
+    // سننتظر ثانية إضافية بعد التحميل ليعطي شكل جمالي
+    setTimeout(() => {
+        loader.classList.add('hidden');
+    }, 2000); // 2000 تعني ثانيتين
+};
